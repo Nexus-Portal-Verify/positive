@@ -2,825 +2,294 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Take our quick quiz to see if you qualify">
-    <meta name="theme-color" content="#E84B89">
-    <title>Are You Ready? - Premium Compatibility Quiz</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Private Access: Premium Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-tap-highlight-color: transparent;
-        }
-
         :root {
-            --color-primary: #FF1493;
-            --color-secondary: #00D4FF;
-            --color-tertiary: #FFD700;
-            --color-purple: #7C3AED;
-            --color-pink: #FF69B4;
-            --color-cyan: #00F0FF;
-            --color-lime: #00FF88;
-            --color-orange: #FF6B35;
-            --color-white: #FFFFFF;
-            --color-dark: #0F0F1E;
-            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.2);
-            --transition-fast: 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --transition-mid: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --transition-slow: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --primary: #DA291C;
+            --secondary: #FFC72C;
+            --dark: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.95);
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            font-family: 'Fredoka', sans-serif;
-            overflow: hidden;
-            position: relative;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background: linear-gradient(-45deg, #FF1493, #00D4FF, #FFD700, #FF6B35);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://i.ibb.co/Kpb0jDYY/Gemini-Generated-Image-6f475l6f475l6f47.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            position: relative;
+            padding: 15px;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Animated background particles */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 244, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 105, 180, 0.15) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -30px); }
-        }
-
-        /* Bubble particles */
-        .bubble {
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.3;
-            animation: bubble-float 6s ease-in infinite;
-        }
-
-        @keyframes bubble-float {
-            0% { transform: translateY(100vh) scale(1); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-100vh) scale(0); opacity: 0; }
-        }
-
-        /* Main container */
         .container {
+            background: var(--glass);
             width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: clamp(16px, 5vw, 32px);
+            max-width: 480px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             overflow: hidden;
-            min-height: 100vh;
+            border: 3px solid var(--secondary);
+            position: relative;
         }
 
-        /* Quiz wrapper */
-        .quiz-wrapper {
-            width: 100%;
-            max-width: 500px;
-            perspective: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: clamp(24px, 6vw, 40px);
-        }
-
-        /* Header section */
-        .quiz-header {
+        .header {
+            background: var(--primary);
+            padding: 30px 20px;
             text-align: center;
-            width: 100%;
-            animation: slideDownIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s both;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: clamp(12px, 3vw, 24px);
-        }
-
-        @keyframes slideDownIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .logo-wrapper {
             position: relative;
-            display: inline-block;
-            margin-bottom: 0;
         }
 
-        .logo-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(60px, 18vw, 90px);
-            height: clamp(60px, 18vw, 90px);
-            background: linear-gradient(135deg, var(--color-white) 0%, #F0F8FF 100%);
-            border-radius: clamp(16px, 5vw, 28px);
-            font-size: clamp(36px, 12vw, 56px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            animation: logoSpin 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid var(--color-cyan);
-            position: relative;
-            z-index: 2;
+        .header h1 {
+            font-family: 'Oswald', sans-serif;
+            color: white;
+            font-size: 2rem;
+            text-transform: uppercase;
+            line-height: 1;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
         }
 
-        @keyframes logoSpin {
-            0% { transform: scale(0.4) rotateZ(-45deg); opacity: 0; }
-            60% { transform: scale(1.15) rotateZ(10deg); }
-            100% { transform: scale(1) rotateZ(0deg); opacity: 1; }
-        }
-
-        .logo-glow {
-            position: absolute;
-            inset: -12px;
-            border-radius: clamp(16px, 5vw, 28px);
-            background: radial-gradient(circle, rgba(0, 244, 255, 0.4), transparent 70%);
-            animation: pulseGlow 2s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 244, 255, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(0, 244, 255, 0.8); }
-        }
-
-        .progress-indicator {
-            display: flex;
-            justify-content: center;
-            gap: clamp(10px, 3vw, 16px);
-            width: 100%;
-        }
-
-        .progress-dot {
-            width: clamp(8px, 2vw, 12px);
-            height: clamp(8px, 2vw, 12px);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            transition: var(--transition-mid);
-            cursor: default;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .progress-dot.active {
-            width: clamp(28px, 8vw, 40px);
-            background: linear-gradient(135deg, var(--color-white) 0%, var(--color-cyan) 100%);
-            box-shadow: 0 6px 20px rgba(0, 244, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            border-color: rgba(255, 255, 255, 0.8);
-            animation: dotPulse 0.4s ease-out;
-        }
-
-        @keyframes dotPulse {
-            0% { transform: scale(0.6); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* Quiz card */
-        .quiz-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.9) 100%);
-            border-radius: clamp(20px, 6vw, 40px);
-            padding: clamp(24px, 6vw, 40px);
-            box-shadow: var(--shadow-lg);
-            border: 3px solid var(--color-cyan);
-            position: relative;
-            width: 100%;
-            animation: cardSlideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s both;
-            min-height: clamp(140px, 35vw, 200px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .quiz-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%, rgba(0, 212, 255, 0.1) 100%);
-            pointer-events: none;
-            border-radius: clamp(20px, 6vw, 40px);
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        @keyframes cardSlideIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .quiz-card.exit {
-            animation: cardSlideOut 0.4s ease-in forwards;
-        }
-
-        @keyframes cardSlideOut {
-            to { opacity: 0; transform: translateY(-30px) scale(0.95); }
-        }
-
-        .question-mark {
-            position: absolute;
-            top: clamp(-20px, -5vw, -30px);
-            left: 50%;
-            transform: translateX(-50%);
-            width: clamp(50px, 14vw, 70px);
-            height: clamp(50px, 14vw, 70px);
-            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-lime) 100%);
-            border-radius: clamp(12px, 3vw, 20px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-white);
-            font-size: clamp(28px, 10vw, 44px);
-            font-weight: 700;
-            border: 4px solid var(--color-white);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
-            animation: questionBounce 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
-            z-index: 2;
-        }
-
-        @keyframes questionBounce {
-            0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
-            50% { transform: translateX(-50%) translateY(-10px) scale(1.12); }
-        }
-
-        .quiz-card h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(18px, 5vw, 28px);
+        .header span {
+            color: var(--secondary);
+            font-size: 1.1rem;
             font-weight: 800;
-            color: var(--color-dark);
-            text-align: center;
-            line-height: 1.4;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Answer buttons */
-        .answers {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(10px, 3vw, 16px);
-            animation: fadeIn 0.5s ease-out 0.2s both;
-            position: relative;
-            z-index: 1;
-            width: 100%;
+        .p-bar-container { height: 8px; background: #ddd; width: 100%; }
+        .p-bar-fill { 
+            height: 100%; 
+            background: linear-gradient(to right, var(--secondary), #28a745); 
+            width: 0%; 
+            transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); 
         }
 
-        .answer-btn {
-            background: linear-gradient(135deg, var(--color-tertiary) 0%, #FFED4E 100%);
-            border: none;
-            border-radius: clamp(16px, 5vw, 28px);
-            padding: clamp(14px, 4vw, 20px) clamp(16px, 5vw, 24px);
-            font-family: 'Fredoka', sans-serif;
-            font-size: clamp(14px, 4.5vw, 18px);
-            font-weight: 700;
-            color: var(--color-dark);
+        .step { display: none; padding: 35px 25px; text-align: center; }
+        .step.active { display: block; animation: zoomIn 0.3s ease; }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h2 { font-size: 1.35rem; color: var(--dark); margin-bottom: 20px; font-weight: 800; }
+        
+        .btn-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .opt-btn {
+            background: white;
+            border: 2px solid #eee;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 1.05rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: var(--transition-fast);
-            position: relative;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            gap: clamp(10px, 3vw, 16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .opt-btn:hover {
+            border-color: var(--primary);
+            background: #fff9f9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .opt-btn i { color: #ddd; transition: 0.2s; }
+        .opt-btn:hover i { color: var(--primary); transform: translateX(5px); }
+
+        .cta-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 22px;
+            border-radius: 15px;
             width: 100%;
-            min-height: clamp(48px, 13vw, 70px);
-        }
-
-        .answer-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-            transition: left 0.8s ease;
-            z-index: 1;
-        }
-
-        .answer-btn:active {
-            transform: scale(0.96);
-        }
-
-        .answer-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        .answer-btn:hover::before {
-            left: 100%;
-        }
-
-        .answer-btn.selected {
-            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-lime) 100%);
-            color: var(--color-white);
-            box-shadow: 0 15px 40px rgba(0, 244, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            animation: buttonSelected 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes buttonSelected {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.06); }
-            100% { transform: scale(1); }
-        }
-
-        .answer-btn.disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .btn-letter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(36px, 10vw, 50px);
-            height: clamp(36px, 10vw, 50px);
-            background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-primary) 100%);
-            border-radius: clamp(12px, 3vw, 16px);
-            color: var(--color-white);
-            font-weight: 900;
-            font-size: clamp(14px, 4vw, 20px);
-            flex-shrink: 0;
-            box-shadow: 0 6px 16px rgba(91, 33, 182, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .answer-btn.selected .btn-letter {
-            background: linear-gradient(135deg, var(--color-white) 0%, #F0F8FF 100%);
-            color: var(--color-secondary);
-            box-shadow: 0 8px 20px rgba(0, 244, 255, 0.5);
-        }
-
-        /* Loading state */
-        .loading-state {
-            display: none;
-            text-align: center;
-            animation: fadeIn 0.5s ease-out;
-            width: 100%;
-        }
-
-        .loading-state.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(20px, 6vw, 32px);
-        }
-
-        .spinner-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: clamp(80px, 25vw, 140px);
-            height: clamp(80px, 25vw, 140px);
-        }
-
-        .spinner {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .spinner-circle {
-            position: absolute;
-            border: 4px solid transparent;
-            border-radius: 50%;
-            inset: 0;
-        }
-
-        .spinner-circle:nth-child(1) {
-            border-top-color: var(--color-primary);
-            border-right-color: var(--color-primary);
-            animation: spin 1.5s linear infinite;
-        }
-
-        .spinner-circle:nth-child(2) {
-            border-bottom-color: var(--color-secondary);
-            border-left-color: var(--color-secondary);
-            animation: spin 2s linear infinite reverse;
-            inset: 10px;
-        }
-
-        .spinner-circle:nth-child(3) {
-            border-top-color: var(--color-tertiary);
-            border-right-color: var(--color-tertiary);
-            animation: spin 2.5s linear infinite;
-            inset: 20px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .center-dot {
-            position: absolute;
-            width: clamp(12px, 3vw, 18px);
-            height: clamp(12px, 3vw, 18px);
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px rgba(0, 244, 255, 0.6);
-            animation: dotPulseCenter 1.5s ease-in-out infinite;
-            z-index: 2;
-        }
-
-        @keyframes dotPulseCenter {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.3); }
-        }
-
-        .loading-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(18px, 5.5vw, 28px);
+            font-size: 1.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-lime) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(218, 41, 28, 0.4);
+            transition: 0.3s;
+            margin-top: 10px;
         }
 
-        .loading-subtext {
-            color: var(--color-dark);
-            font-size: clamp(13px, 4vw, 16px);
-            animation: pulse 1.5s ease-in-out infinite;
-            font-weight: 600;
+        .cta-btn:hover {
+            background: #b31d14;
+            transform: scale(1.02);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
         }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Footer */
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(180deg, rgba(15, 15, 30, 0) 0%, rgba(15, 15, 30, 0.9) 100%);
-            backdrop-filter: blur(10px);
-            padding: clamp(16px, 4vw, 24px) clamp(12px, 3vw, 16px);
+        .math-input {
+            width: 120px;
+            padding: 15px;
+            font-size: 1.5rem;
             text-align: center;
-            z-index: 8;
+            border: 3px solid #eee;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: bold;
         }
 
-        .footer-link {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: clamp(11px, 3vw, 13px);
-            margin: 0 clamp(6px, 2vw, 10px);
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
+        footer { margin-top: 25px; color: rgba(255,255,255,0.7); font-size: 0.8rem; text-align: center; }
+        .secure { color: #28a745; font-weight: bold; margin-top: 5px; }
 
-        .footer-link:hover {
-            color: var(--color-secondary);
-            text-decoration: underline;
-        }
-
-        .footer-separator {
-            color: rgba(255, 255, 255, 0.3);
-            margin: 0 clamp(4px, 1vw, 6px);
-        }
-
-        .facebook-disclaimer {
-            display: block;
-            color: rgba(255, 255, 255, 0.65);
-            font-size: clamp(10px, 2.5vw, 12px);
-            margin-top: clamp(8px, 2vw, 12px);
-            line-height: 1.5;
-            font-weight: 500;
-        }
-
-        /* Responsive breakpoints */
-        @media (max-height: 500px) {
-            .container {
-                padding: clamp(12px, 3vw, 16px);
-                gap: 0;
-            }
-
-            .quiz-header {
-                gap: 12px;
-                margin-bottom: 8px;
-            }
-
-            .logo-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 28px;
-            }
-
-            .progress-indicator {
-                gap: 8px;
-            }
-
-            .quiz-card {
-                min-height: 100px;
-                padding: 16px 12px;
-            }
-
-            .quiz-card h2 {
-                font-size: 14px;
-            }
-
-            .answers {
-                gap: 8px;
-            }
-
-            .answer-btn {
-                min-height: 40px;
-                padding: 10px 12px;
-                font-size: 12px;
-            }
-
-            .btn-letter {
-                width: 32px;
-                height: 32px;
-                font-size: 12px;
-            }
-
-            .footer {
-                padding: 12px 12px;
-            }
-        }
-
-        @media (min-height: 900px) {
-            .quiz-wrapper {
-                gap: 50px;
-            }
-
-            .quiz-header {
-                gap: 32px;
-            }
-
-            .answers {
-                gap: 20px;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            body, .container, .footer { display: none; }
-        }
     </style>
 </head>
 <body>
-    <!-- Bubble particles -->
-    <div id="bubbleContainer"></div>
 
-    <!-- Main Quiz Container -->
-    <div class="container">
-        <div class="quiz-wrapper">
-            <!-- Header with Logo -->
-            <div class="quiz-header">
-                <div class="logo-wrapper">
-                    <div class="logo-icon">✨</div>
-                    <div class="logo-glow"></div>
-                </div>
-                <div class="progress-indicator">
-                    <div class="progress-dot active" id="progress0"></div>
-                    <div class="progress-dot" id="progress1"></div>
-                    <div class="progress-dot" id="progress2"></div>
-                </div>
-            </div>
+<div class="container">
+    <div class="header">
+        <h1>Private Invite 2026</h1>
+        <span>PREMIUM ACCESS CHALLENGE</span>
+    </div>
 
-            <!-- Quiz Content -->
-            <div id="quizContent">
-                <!-- Question 1 -->
-                <div class="quiz-card" id="card0">
-                    <div class="question-mark">?</div>
-                    <h2>Are you at least 18 years of age?</h2>
-                </div>
-                <div class="answers" id="answers0">
-                    <button class="answer-btn" data-answer="yes">
-                        <span class="btn-letter">a</span>
-                        <span>Yes, I am</span>
-                    </button>
-                    <button class="answer-btn" data-answer="no">
-                        <span class="btn-letter">b</span>
-                        <span>No, I'm not</span>
-                    </button>
-                </div>
+    <div class="p-bar-container">
+        <div class="p-bar-fill" id="pFill"></div>
+    </div>
 
-                <!-- Question 2 (Hidden) -->
-                <div class="quiz-card hidden-question" id="card1" style="display: none;">
-                    <div class="question-mark">?</div>
-                    <h2>What type of connection are you looking for?</h2>
-                </div>
-                <div class="answers hidden-question" id="answers1" style="display: none;">
-                    <button class="answer-btn" data-answer="serious">
-                        <span class="btn-letter">a</span>
-                        <span>Serious</span>
-                    </button>
-                    <button class="answer-btn" data-answer="casual">
-                        <span class="btn-letter">b</span>
-                        <span>Casual</span>
-                    </button>
-                    <button class="answer-btn" data-answer="chatting">
-                        <span class="btn-letter">c</span>
-                        <span>Just Chatting</span>
-                    </button>
-                </div>
+    <div class="step active" id="s1">
+        <h2>Are You Ready?</h2>
+        <p style="margin-bottom: 25px;">Complete the quick survey to unlock your <strong>Premium Private Room</strong> access now!</p>
+        <div style="background: #fff3e0; padding: 15px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--secondary);">
+            <p style="margin:0; font-size: 0.85rem; color: #d35400;"><strong>Hurry!</strong> Only 7 spots left for your region.</p>
+        </div>
+        <button class="cta-btn" onclick="next(2)">Enter Room <i class="fas fa-lock-open"></i></button>
+    </div>
 
-                <!-- Question 3 (Hidden) -->
-                <div class="quiz-card hidden-question" id="card2" style="display: none;">
-                    <div class="question-mark">?</div>
-                    <h2>Do you agree to treat our community with respect?</h2>
-                </div>
-                <div class="answers hidden-question" id="answers2" style="display: none;">
-                    <button class="answer-btn" data-answer="agree">
-                        <span class="btn-letter">a</span>
-                        <span>I Agree</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Loading State (Hidden) -->
-            <div class="loading-state" id="loadingState">
-                <div class="spinner-wrapper">
-                    <div class="spinner">
-                        <div class="spinner-circle"></div>
-                        <div class="spinner-circle"></div>
-                        <div class="spinner-circle"></div>
-                        <div class="center-dot"></div>
-                    </div>
-                </div>
-                <div class="loading-text">Checking Availability...</div>
-                <div class="loading-subtext">Verifying your profile</div>
-            </div>
+    <div class="step" id="s2">
+        <h2>1. Are you over 18 years old?</h2>
+        <div class="btn-list">
+            <button class="opt-btn" onclick="next(3)">Yes, I am 18+ <i class="fas fa-chevron-right"></i></button>
+            <button class="opt-btn" onclick="next(3)">I am 21+ <i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div style="padding: 0;">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <span class="footer-separator">•</span>
-            <a href="#" class="footer-link">Terms of Service</a>
-        </div>
-        <div class="facebook-disclaimer">
-            ⓘ This site is not a part of the Facebook website or Facebook Inc.
+    <div class="step" id="s3">
+        <h2>2. Looking for Real Connections?</h2>
+        <div class="btn-list">
+            <button class="opt-btn" onclick="next(4)">Yes, definitely <i class="fas fa-chevron-right"></i></button>
+            <button class="opt-btn" onclick="next(4)">Just exploring <i class="fas fa-chevron-right"></i></button>
+            <button class="opt-btn" onclick="next(4)">I want cams <i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 
-    <script>
-        // ===== CONFIGURATION =====
-        const CONFIG = {
-            TEXT: {
-                en: {
-                    q1: "Are you at least 18 years of age?",
-                    a1_yes: "Yes, I am",
-                    a1_no: "No, I'm not",
-                    q2: "What type of connection are you looking for?",
-                    a2_serious: "Serious",
-                    a2_casual: "Casual",
-                    a2_chatting: "Just Chatting",
-                    q3: "Do you agree to treat our community with respect?",
-                    a3_agree: "I Agree",
-                    loading: "Checking Availability...",
-                    loadingSub: "Verifying your profile"
-                },
-                de: {
-                    q1: "Sind Sie mindestens 18 Jahre alt?",
-                    a1_yes: "Ja, ich bin",
-                    a1_no: "Nein, das bin ich nicht",
-                    q2: "Nach welcher Art von Verbindung suchen Sie?",
-                    a2_serious: "Ernst gemeint",
-                    a2_casual: "Ungezwungen",
-                    a2_chatting: "Nur zum Chatten",
-                    q3: "Stimmen Sie zu, unsere Community respektvoll zu behandeln?",
-                    a3_agree: "Ich stimme zu",
-                    loading: "Verfügbarkeit prüfen...",
-                    loadingSub: "Profil wird überprüft"
-                }
-            },
-            AFFILIATE_URL: "https://aff.cpazon.com/click?camp=1988&pubid=2543&sid=SAFT43T4&sid2=ET45Y&sid3=54Y45Y&sid4=45Y45&sid5=U45U",
-            LOADING_DURATION: 3000,
-            LANG: 'en'
-        };
+    <div class="step" id="s4">
+        <h2>3. Do you agree to our rules?</h2>
+        <div class="btn-list">
+            <button class="opt-btn" onclick="next(5)">I Agree <i class="fas fa-chevron-right"></i></button>
+            <button class="opt-btn" onclick="next(5)">No Fake profiles <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
 
-        // ===== STATE MANAGEMENT =====
-        let currentQuestion = 0;
-        const answers = {};
-        let isProcessing = false;
+    <div class="step" id="s5">
+        <h2>Connecting to Server...</h2>
+        <div class="loader"></div>
+        <p id="status-text">Checking server slots...</p>
+    </div>
 
-        // ===== CREATE BUBBLE PARTICLES =====
-        function createBubbles() {
-            const container = document.getElementById('bubbleContainer');
-            if (!container) return;
-            const colors = ['#FF1493', '#00D4FF', '#FFD700', '#FF6B35', '#00FF88'];
-            const bubbleCount = Math.random() > 0.5 ? 5 : 10;
+    <div class="step" id="s6">
+        <h2>Human Check</h2>
+        <p>Solve this simple math: <strong>10 + 4 = ?</strong></p>
+        <input type="number" id="mathAns" class="math-input" placeholder="?">
+        <button class="cta-btn" onclick="checkMath()">Verify <i class="fas fa-user-check"></i></button>
+    </div>
 
-            for (let i = 0; i < bubbleCount; i++) {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                const size = Math.random() * 60 + 20;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const left = Math.random() * 100;
-                const delay = Math.random() * 3;
-                const duration = Math.random() * 4 + 3;
+    <div class="step" id="s7">
+        <h2 style="color: #28a745;">Access Granted!</h2>
+        <p>Congratulations! Your private room is now reserved and ready for you.</p>
+        <div style="background: #f0fff4; padding: 15px; border-radius: 15px; margin: 20px 0; border: 2px solid #28a745;">
+            <p style="color: #28a745; font-weight: 800; margin: 0;">ACCESS CODE: GRANTED-2026</p>
+        </div>
+        <button class="cta-btn" onclick="redirect()" style="background: #28a745;">Continue to Room <i class="fas fa-sign-in-alt"></i></button>
+        <p style="font-size: 0.75rem; margin-top: 15px;">*Registration required on the next page to verify email.</p>
+    </div>
+</div>
 
-                bubble.style.left = left + '%';
-                bubble.style.width = size + 'px';
-                bubble.style.height = size + 'px';
-                bubble.style.background = color;
-                bubble.style.animationDelay = delay + 's';
-                bubble.style.animationDuration = duration + 's';
+<footer>
+    &copy; 2026 Premium Cams Network. All Rights Reserved.<br>
+    <div class="secure"><i class="fas fa-lock"></i> 256-Bit SSL Encrypted Connection</div>
+</footer>
 
-                container.appendChild(bubble);
+<script>
+    // ඔබේ Link එක
+    const baseOffer = "https://aff.cpazon.com/click?camp=1985&pubid=2543";
 
-                setTimeout(() => bubble.remove(), (duration + delay) * 1000);
-            }
+    function generateHash(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
+        return result;
+    }
 
-        setInterval(createBubbles, 2000);
-        createBubbles();
+    function next(id) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('s' + id).classList.add('active');
+        
+        document.getElementById('pFill').style.width = (id / 7 * 100) + "%";
 
-        // Additional Quiz Logic (Basic Navigation)
-        document.querySelectorAll('.answer-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                if(isProcessing) return;
-                
-                const nextQ = currentQuestion + 1;
-                const currentCard = document.getElementById('card' + currentQuestion);
-                const currentAns = document.getElementById('answers' + currentQuestion);
-                
-                if (nextQ < 3) {
-                    currentCard.style.display = 'none';
-                    currentAns.style.display = 'none';
-                    
-                    document.getElementById('card' + nextQ).style.display = 'flex';
-                    document.getElementById('answers' + nextQ).style.display = 'flex';
-                    document.getElementById('progress' + nextQ).classList.add('active');
-                    currentQuestion = nextQ;
-                } else {
-                    // Final State
-                    document.getElementById('quizContent').style.display = 'none';
-                    document.getElementById('loadingState').classList.add('active');
-                    isProcessing = true;
-                    
-                    setTimeout(() => {
-                        window.location.href = CONFIG.AFFILIATE_URL;
-                    }, CONFIG.LOADING_DURATION);
-                }
-            });
-        });
-    </script>
+        if(id === 5) {
+            startLoading();
+        }
+    }
+
+    function startLoading() {
+        const msgs = ["Securing connection...", "Checking IP Location...", "Private Slot Found!", "Finalizing entry..."];
+        let i = 0;
+        const interval = setInterval(() => {
+            document.getElementById('status-text').innerText = msgs[i];
+            i++;
+            if(i >= msgs.length) {
+                clearInterval(interval);
+                next(6);
+            }
+        }, 1300);
+    }
+
+    function checkMath() {
+        const val = document.getElementById('mathAns').value;
+        if(val == "14") {
+            next(7);
+        } else {
+            alert("Wrong answer! Please try again.");
+        }
+    }
+
+    function redirect() {
+        // ම මෙතනදී හැම User කෙනෙක්ටම Unique Hash එකතු වෙනවා
+        const sid1 = generateHash(10);
+        const sid2 = generateHash(10);
+        const sid3 = generateHash(10);
+        const sid4 = generateHash(10);
+        const sid5 = generateHash(10);
+
+        const finalUrl = `${baseOffer}&sid=${sid1}&sid2=${sid2}&sid3=${sid3}&sid4=${sid4}&sid5=${sid5}`;
+        
+        window.location.href = finalUrl;
+    }
+</script>
+
 </body>
 </html>
